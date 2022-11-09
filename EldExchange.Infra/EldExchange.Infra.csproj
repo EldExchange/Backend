@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EldExchange.CrossCutting\EldExchange.CrossCutting.csproj" />
+    <ProjectReference Include="..\EldExchange.Domain\EldExchange.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\Mapping\" />
+    <Folder Include="Context\Migrations\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

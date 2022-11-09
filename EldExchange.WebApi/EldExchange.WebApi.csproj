@@ -10,4 +10,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EldExchange.CrossCutting\EldExchange.CrossCutting.csproj" />
+    <ProjectReference Include="..\EldExchange.Domain\EldExchange.Domain.csproj" />
+    <ProjectReference Include="..\EldExchange.Infra\EldExchange.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
