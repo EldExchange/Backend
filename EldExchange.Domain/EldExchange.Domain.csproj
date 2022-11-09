@@ -14,7 +14,6 @@
     <Folder Include="Interfaces\IRepositories\" />
     <Folder Include="Interfaces\IServices\" />
     <Folder Include="Models\DTOs\" />
-    <Folder Include="Models\DALs\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
