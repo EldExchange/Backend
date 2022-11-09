@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EldExchange.CrossCutting\EldExchange.CrossCutting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\IRepositories\" />
+    <Folder Include="Interfaces\IServices\" />
+    <Folder Include="Models\DTOs\" />
+    <Folder Include="Models\DALs\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

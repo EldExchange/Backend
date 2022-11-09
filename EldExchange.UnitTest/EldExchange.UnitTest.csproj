@@ -21,4 +21,19 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EldExchange.CrossCutting\EldExchange.CrossCutting.csproj" />
+    <ProjectReference Include="..\EldExchange.Domain\EldExchange.Domain.csproj" />
+    <ProjectReference Include="..\EldExchange.Infra\EldExchange.Infra.csproj" />
+    <ProjectReference Include="..\EldExchange.WebApi\EldExchange.WebApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Mocks\" />
+    <Folder Include="TestUtils\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
