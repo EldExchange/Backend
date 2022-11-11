@@ -17,5 +17,5 @@ public class Currency
 
 	//public ICollection<Money> Moneys { get; set; } = new List<Money>();
 
-	public ICollection<Agency> Agencies { get; set; } = new List<Agency>();
+	//public ICollection<Agency> Agencies { get; set; } = new List<Agency>();
 }

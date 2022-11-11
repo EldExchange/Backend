@@ -1,3 +1,4 @@
+using EldExchange.Domain.Configs;
 using EldExchange.Infra.Config;
 using EldExchange.Infra.Context;
 using EldExchange.WebApi.MIddleware;
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfraConfiguration(builder.Configuration);
+builder.Services.AddBusinesService();
 
 var app = builder.Build();
 

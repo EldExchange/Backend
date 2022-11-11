@@ -11,8 +11,8 @@ public class Agency : BasicDAL<string>
 	public string CNPJ { get; set; }
 	public bool IsWorking { get; set; } = false;
 
-	public Address? Address { get; set; }
-	public ICollection<Telephone> Phones { get; set; } = new List<Telephone>();
+	//public Address? Address { get; set; }
+	//public ICollection<Telephone> Phones { get; set; } = new List<Telephone>();
 	//public ICollection<Safe> Safes { get; set; } = new List<Safe>();
-	public ICollection<Currency> Currencies { get; set; } = new List<Currency>();
+	//public ICollection<Currency> Currencies { get; set; } = new List<Currency>();
 }

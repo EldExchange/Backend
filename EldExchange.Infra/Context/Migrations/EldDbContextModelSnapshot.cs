@@ -21,21 +21,6 @@ namespace EldExchange.Infra.Context.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AgencyCurrency", b =>
-                {
-                    b.Property<string>("AgenciesId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("CurrenciesCurrencyCode")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("AgenciesId", "CurrenciesCurrencyCode");
-
-                    b.HasIndex("CurrenciesCurrencyCode");
-
-                    b.ToTable("AgencyCurrency");
-                });
-
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Address", b =>
                 {
                     b.Property<string>("Id")
@@ -71,37 +56,22 @@ namespace EldExchange.Infra.Context.Migrations
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Agency", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(36)
-                        .IsUnicode(false)
-                        .HasColumnType("char(36)")
-                        .HasColumnName("id")
-                        .IsFixedLength();
-
-                    b.Property<string>("AddressId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
-                        .HasMaxLength(18)
-                        .IsUnicode(false)
-                        .HasColumnType("char(18)")
-                        .HasColumnName("cnpj")
-                        .IsFixedLength();
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsWorking")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)")
-                        .HasColumnName("name");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("agency", (string)null);
+                    b.ToTable("Agencies");
                 });
 
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Currency", b =>
@@ -127,9 +97,6 @@ namespace EldExchange.Infra.Context.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AgencyId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("CountryCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -146,45 +113,7 @@ namespace EldExchange.Infra.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgencyId");
-
                     b.ToTable("Telephones");
-                });
-
-            modelBuilder.Entity("AgencyCurrency", b =>
-                {
-                    b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
-                        .WithMany()
-                        .HasForeignKey("AgenciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EldExchange.Domain.Models.DALs.Currency", null)
-                        .WithMany()
-                        .HasForeignKey("CurrenciesCurrencyCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Agency", b =>
-                {
-                    b.HasOne("EldExchange.Domain.Models.DALs.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>
-                {
-                    b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
-                        .WithMany("Phones")
-                        .HasForeignKey("AgencyId");
-                });
-
-            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Agency", b =>
-                {
-                    b.Navigation("Phones");
                 });
 #pragma warning restore 612, 618
         }

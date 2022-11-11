@@ -26,7 +26,7 @@ namespace EldExchange.Infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new AgencyMap());
+            //modelBuilder.ApplyConfiguration(new AgencyMap());
         }
     }
 }

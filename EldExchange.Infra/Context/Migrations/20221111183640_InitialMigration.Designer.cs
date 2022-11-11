@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldExchange.Infra.Context.Migrations
 {
     [DbContext(typeof(EldDbContext))]
-    [Migration("20221111162924_InitialMigration")]
+    [Migration("20221111183640_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,21 +22,6 @@ namespace EldExchange.Infra.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("AgencyCurrency", b =>
-                {
-                    b.Property<string>("AgenciesId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CurrenciesCurrencyCode")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("AgenciesId", "CurrenciesCurrencyCode");
-
-                    b.HasIndex("CurrenciesCurrencyCode");
-
-                    b.ToTable("AgencyCurrency");
-                });
 
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Address", b =>
                 {
@@ -75,9 +60,6 @@ namespace EldExchange.Infra.Context.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AddressId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CNPJ")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -90,8 +72,6 @@ namespace EldExchange.Infra.Context.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Agencies");
                 });
@@ -119,9 +99,6 @@ namespace EldExchange.Infra.Context.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AgencyId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CountryCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -138,45 +115,7 @@ namespace EldExchange.Infra.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgencyId");
-
                     b.ToTable("Telephones");
-                });
-
-            modelBuilder.Entity("AgencyCurrency", b =>
-                {
-                    b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
-                        .WithMany()
-                        .HasForeignKey("AgenciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EldExchange.Domain.Models.DALs.Currency", null)
-                        .WithMany()
-                        .HasForeignKey("CurrenciesCurrencyCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Agency", b =>
-                {
-                    b.HasOne("EldExchange.Domain.Models.DALs.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>
-                {
-                    b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
-                        .WithMany("Phones")
-                        .HasForeignKey("AgencyId");
-                });
-
-            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Agency", b =>
-                {
-                    b.Navigation("Phones");
                 });
 #pragma warning restore 612, 618
         }
