@@ -1,8 +1,8 @@
 ﻿namespace EldExchange.Domain.Models.DALs;
 
-public abstract class Money
+public abstract class Money : BasicDAL<string>
 {
-    public Money(decimal value, string? valueName = null)
+    public Money(string id,decimal value, string? valueName = null): base(id)
     {
         Value = value;
         ValueName = valueName;
@@ -13,14 +13,14 @@ public abstract class Money
 
 public class Coin : Money
 {
-    public Coin(decimal value, string? valueName = null) : base(value, valueName)
+    public Coin(string id, decimal value, string? valueName = null) : base(id,value, valueName)
     {
     }
 }
 
 public class BankNote : Money
 {
-    public BankNote(decimal value, string? valueName = null) : base(value, valueName)
+    public BankNote(string id, decimal value, string? valueName = null) : base(id, value, valueName)
     {
     }
 }

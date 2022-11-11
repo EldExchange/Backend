@@ -13,7 +13,15 @@ namespace EldExchange.Infra.Context.Mapping
     {
         public void Configure(EntityTypeBuilder<Agency> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("agency");
+
+            builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Id).HasColumnName("id").IsUnicode(false).IsFixedLength().HasMaxLength(36);
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250);
+            builder.Property(x => x.CNPJ).HasColumnName("cnpj").IsUnicode(false).IsFixedLength().HasMaxLength(18);
+
+            //builder.HasOne(x => x.Address).WithOne(x=> x.Agency).HasForeignKey("address_id").HasConstraintName("fk_agency_address");
         }
     }
 }

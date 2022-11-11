@@ -15,5 +15,7 @@ public class Address : BasicDAL<string>
 	public string Country { get; set; } = "Br";
 	public string? City { get; set; }
 
+	//public Agency Agency { get; set; }
+
 }
 

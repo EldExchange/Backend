@@ -1,6 +1,7 @@
 using EldExchange.Infra.Config;
 using EldExchange.Infra.Context;
 using EldExchange.WebApi.MIddleware;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 using (var serviceScope = app.Services.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<EldDbContext>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
 }
 
 app.UseMiddleware<GetVersionMiddleware>();
