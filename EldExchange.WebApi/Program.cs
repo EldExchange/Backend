@@ -1,5 +1,6 @@
 using EldExchange.Infra.Config;
 using EldExchange.Infra.Context;
+using EldExchange.WebApi.MIddleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,17 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfraConfiguration(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
+//ensure that the database exist
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<EldDbContext>();
+    context.Database.EnsureCreated();
+}
+
+app.UseMiddleware<GetVersionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
