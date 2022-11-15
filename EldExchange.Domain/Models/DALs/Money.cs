@@ -17,6 +17,7 @@ public class Coin : Money
 {
     public Coin(string code, decimal value) : base(code, value)
     {
+        Type = "Coin";
     }
 }
 
@@ -24,6 +25,7 @@ public class BankNote : Money
 {
     public BankNote(string code, decimal value) : base(code, value)
     {
+        Type = "BankNote";
     }
 }
 

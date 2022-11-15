@@ -91,6 +91,27 @@ namespace EldExchange.Infra.Context.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Money",
+                schema: "EldExchange",
+                columns: table => new
+                {
+                    Code = table.Column<string>(type: "char(3)", unicode: false, fixedLength: true, maxLength: 3, nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, defaultValue: "Coin")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Money", x => new { x.Code, x.Value, x.Type });
+                    table.ForeignKey(
+                        name: "FK_Money_Currencies_Code",
+                        column: x => x.Code,
+                        principalSchema: "EldExchange",
+                        principalTable: "Currencies",
+                        principalColumn: "Code",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 schema: "EldExchange",
                 table: "Currencies",
@@ -297,6 +318,18 @@ namespace EldExchange.Infra.Context.Migrations
                 columns: new[] { "Code", "Country", "Name", "Number" },
                 values: new object[] { "ZWL", "ZIMBABWE", "Zimbabwe Dollar", 932 });
 
+            migrationBuilder.InsertData(
+                schema: "EldExchange",
+                table: "Money",
+                columns: new[] { "Code", "Type", "Value" },
+                values: new object[] { "USD", "BankNote", 1m });
+
+            migrationBuilder.InsertData(
+                schema: "EldExchange",
+                table: "Money",
+                columns: new[] { "Code", "Type", "Value" },
+                values: new object[] { "USD", "Coin", 1m });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Telephones_AgencyId",
                 schema: "EldExchange",
@@ -319,11 +352,15 @@ namespace EldExchange.Infra.Context.Migrations
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(
-                name: "Currencies",
+                name: "Money",
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(
                 name: "Telephones",
+                schema: "EldExchange");
+
+            migrationBuilder.DropTable(
+                name: "Currencies",
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(

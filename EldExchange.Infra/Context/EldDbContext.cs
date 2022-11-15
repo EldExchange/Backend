@@ -33,6 +33,8 @@ namespace EldExchange.Infra.Context
             modelBuilder.ApplyConfiguration(new TelephoneMap());
             modelBuilder.ApplyConfiguration(new CurrencyMap());
             modelBuilder.ApplyConfiguration(new MoneyMap());
+            modelBuilder.ApplyConfiguration(new BankNoteMap());
+            modelBuilder.ApplyConfiguration(new CoinMap());
         }
     }
 }

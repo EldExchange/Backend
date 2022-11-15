@@ -1309,15 +1309,12 @@ namespace EldExchange.Infra.Context.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Type")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CurrencyCode")
-                        .HasColumnType("char(3)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("Coin");
 
                     b.HasKey("Code", "Value", "Type");
-
-                    b.HasIndex("CurrencyCode");
 
                     b.ToTable("Money", "EldExchange");
 
@@ -1371,6 +1368,14 @@ namespace EldExchange.Infra.Context.Migrations
                     b.HasBaseType("EldExchange.Domain.Models.DALs.Money");
 
                     b.HasDiscriminator().HasValue("BankNote");
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "USD",
+                            Value = 1m,
+                            Type = "BankNote"
+                        });
                 });
 
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Coin", b =>
@@ -1378,6 +1383,14 @@ namespace EldExchange.Infra.Context.Migrations
                     b.HasBaseType("EldExchange.Domain.Models.DALs.Money");
 
                     b.HasDiscriminator().HasValue("Coin");
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "USD",
+                            Value = 1m,
+                            Type = "Coin"
+                        });
                 });
 
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Address", b =>
@@ -1393,7 +1406,9 @@ namespace EldExchange.Infra.Context.Migrations
                 {
                     b.HasOne("EldExchange.Domain.Models.DALs.Currency", "Currency")
                         .WithMany()
-                        .HasForeignKey("CurrencyCode");
+                        .HasForeignKey("Code")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Currency");
                 });

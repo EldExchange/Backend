@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldExchange.Infra.Context.Migrations
 {
     [DbContext(typeof(EldDbContext))]
-    [Migration("20221115051820_InitialMigration")]
+    [Migration("20221115060810_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1299,6 +1299,30 @@ namespace EldExchange.Infra.Context.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Money", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(3)
+                        .IsUnicode(false)
+                        .HasColumnType("char(3)")
+                        .IsFixedLength();
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Type")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("Coin");
+
+                    b.HasKey("Code", "Value", "Type");
+
+                    b.ToTable("Money", "EldExchange");
+
+                    b.HasDiscriminator<string>("Type").HasValue("Money");
+                });
+
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1341,6 +1365,36 @@ namespace EldExchange.Infra.Context.Migrations
                     b.ToTable("Telephones", "EldExchange");
                 });
 
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.BankNote", b =>
+                {
+                    b.HasBaseType("EldExchange.Domain.Models.DALs.Money");
+
+                    b.HasDiscriminator().HasValue("BankNote");
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "USD",
+                            Value = 1m,
+                            Type = "BankNote"
+                        });
+                });
+
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Coin", b =>
+                {
+                    b.HasBaseType("EldExchange.Domain.Models.DALs.Money");
+
+                    b.HasDiscriminator().HasValue("Coin");
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "USD",
+                            Value = 1m,
+                            Type = "Coin"
+                        });
+                });
+
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Address", b =>
                 {
                     b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
@@ -1348,6 +1402,17 @@ namespace EldExchange.Infra.Context.Migrations
                         .HasForeignKey("EldExchange.Domain.Models.DALs.Address", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Money", b =>
+                {
+                    b.HasOne("EldExchange.Domain.Models.DALs.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("Code")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Currency");
                 });
 
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>

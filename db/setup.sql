@@ -49,6 +49,16 @@ CREATE TABLE [EldExchange].[Telephones] (
 GO
 
 
+CREATE TABLE [EldExchange].[Money] (
+    [Code] char(3) NOT NULL,
+    [Value] decimal(18,2) NOT NULL,
+    [Type] nvarchar(50) NOT NULL DEFAULT N'Coin',
+    CONSTRAINT [PK_Money] PRIMARY KEY ([Code], [Value], [Type]),
+    CONSTRAINT [FK_Money_Currencies_Code] FOREIGN KEY ([Code]) REFERENCES [EldExchange].[Currencies] ([Code]) ON DELETE CASCADE
+);
+GO
+
+
 IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Country', N'Name', N'Number') AND [object_id] = OBJECT_ID(N'[EldExchange].[Currencies]'))
     SET IDENTITY_INSERT [EldExchange].[Currencies] ON;
 INSERT INTO [EldExchange].[Currencies] ([Code], [Country], [Name], [Number])
@@ -255,6 +265,24 @@ INSERT INTO [EldExchange].[Currencies] ([Code], [Country], [Name], [Number])
 VALUES ('ZWL', N'ZIMBABWE', N'Zimbabwe Dollar', 932);
 IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Country', N'Name', N'Number') AND [object_id] = OBJECT_ID(N'[EldExchange].[Currencies]'))
     SET IDENTITY_INSERT [EldExchange].[Currencies] OFF;
+GO
+
+
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Type', N'Value') AND [object_id] = OBJECT_ID(N'[EldExchange].[Money]'))
+    SET IDENTITY_INSERT [EldExchange].[Money] ON;
+INSERT INTO [EldExchange].[Money] ([Code], [Type], [Value])
+VALUES ('USD', N'BankNote', 1.0);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Type', N'Value') AND [object_id] = OBJECT_ID(N'[EldExchange].[Money]'))
+    SET IDENTITY_INSERT [EldExchange].[Money] OFF;
+GO
+
+
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Type', N'Value') AND [object_id] = OBJECT_ID(N'[EldExchange].[Money]'))
+    SET IDENTITY_INSERT [EldExchange].[Money] ON;
+INSERT INTO [EldExchange].[Money] ([Code], [Type], [Value])
+VALUES ('USD', N'Coin', 1.0);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Type', N'Value') AND [object_id] = OBJECT_ID(N'[EldExchange].[Money]'))
+    SET IDENTITY_INSERT [EldExchange].[Money] OFF;
 GO
 
 
