@@ -2,15 +2,17 @@
 
 public class Safe
 {
-    public Safe(string agencyId, string currencyCode)
+    public Safe(string agencyId, string code)
     {
         AgencyId = agencyId;
-        CurrencyCode = currencyCode;
+        Code = code;
     }
 
     public string AgencyId { get; set; }
     public Agency? Agency { get; set; }
-    public string CurrencyCode { get; set; }
-    public Currency? Currency { get; set; }
+    public string Code { get; set; }
+    public Money? Money { get; set; }
+    public int Quantity { get; set; }
+    public decimal Value { get; set; }
 
 }

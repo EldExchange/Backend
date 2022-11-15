@@ -20,3 +20,21 @@ internal class CurrencyMap : IEntityTypeConfiguration<Currency>
     }
 }
 
+internal class MoneyMap : IEntityTypeConfiguration<Money>
+{
+    public void Configure(EntityTypeBuilder<Money> builder)
+    {
+        builder.HasKey(x => new { x.Code, x.Value, x.Type });
+
+        builder.HasDiscriminator(x => x.Type);
+
+        builder.Property(x=> x.Code).IsFixedLength().HasMaxLength(3).IsUnicode(false);
+        builder.Property(x => x.Type).HasMaxLength(50);
+
+        var moneyData =  new List<Money>()
+        {
+            new Coin("USD", 1), 
+            new BankNote("USD", 1),
+        };
+    }
+}

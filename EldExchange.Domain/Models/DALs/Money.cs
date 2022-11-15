@@ -1,26 +1,28 @@
 ﻿namespace EldExchange.Domain.Models.DALs;
 
-public abstract class Money : BasicDAL<string>
+public abstract class Money
 {
-    public Money(string id, decimal value, string? valueName = null)
+    public Money(string code, decimal value)
     {
         Value = value;
-        ValueName = valueName;
+        Code = code;
     }
+    public Currency? Currency { get; set; }
+    public string Code { get; set; }
     public decimal Value { get; set; }
-    public string? ValueName { get; set; }
+    public string? Type { get; set; }
 }
 
 public class Coin : Money
 {
-    public Coin(string id, decimal value, string? valueName = null) : base(id, value, valueName)
+    public Coin(string code, decimal value) : base(code, value)
     {
     }
 }
 
 public class BankNote : Money
 {
-    public BankNote(string id, decimal value, string? valueName = null) : base(id, value, valueName)
+    public BankNote(string code, decimal value) : base(code, value)
     {
     }
 }

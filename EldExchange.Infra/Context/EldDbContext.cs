@@ -10,12 +10,18 @@ namespace EldExchange.Infra.Context
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Telephone> Telephones { get; set; }
         public DbSet<Currency> Currencies { get; set; }
+        //public DbSet<Money> Money { get; set; }
+        public DbSet<Coin> Coins { get; set; }
+        public DbSet<BankNote> BankNotes { get; set; }
         public EldDbContext(DbContextOptions options) : base(options)
         {
             Agencies = Set<Agency>();
             Addresses = Set<Address>();
             Telephones = Set<Telephone>();
             Currencies = Set<Currency>();
+            //Money = Set<Money>();
+            Coins= Set<Coin>();
+            BankNotes= Set<BankNote>(); 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +32,7 @@ namespace EldExchange.Infra.Context
             modelBuilder.ApplyConfiguration(new AddressMap());
             modelBuilder.ApplyConfiguration(new TelephoneMap());
             modelBuilder.ApplyConfiguration(new CurrencyMap());
+            modelBuilder.ApplyConfiguration(new MoneyMap());
         }
     }
 }
