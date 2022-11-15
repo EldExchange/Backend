@@ -1,17 +1,17 @@
 ﻿namespace EldExchange.Domain.Models.DALs;
 
-public class Telephone : BasicDAL<string>
+public class Telephone : BasicDAL<Guid>
 {
-	public Telephone(string id, string number, string countryCode) : base(id)
-	{
-		Number = number;
-		CountryCode = countryCode;
-	}
+    public Telephone(string number, string countryCode)
+    {
+        Number = number;
+        CountryCode = countryCode;
+    }
 
-	public string CountryCode { get; set; }
-	public string? RegionCode { get; set; }
-	public string Number { get; set; }
-	public string? Type { get; set; }
-
+    public string CountryCode { get; set; }
+    public string? RegionCode { get; set; }
+    public string Number { get; set; }
+    public string? Type { get; set; }
+    public Guid AgencyId { get; set; }
 }
 

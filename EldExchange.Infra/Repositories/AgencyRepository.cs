@@ -1,4 +1,5 @@
-﻿using EldExchange.Domain.Interfaces.IRepositories;
+﻿using EldExchange.CrossCutting.Exceptions;
+using EldExchange.Domain.Interfaces.IRepositories;
 using EldExchange.Domain.Models.DALs;
 using EldExchange.Infra.Context;
 using Microsoft.EntityFrameworkCore;
@@ -16,8 +17,6 @@ namespace EldExchange.Infra.Repositories
 
         public void AddAgency(Agency model)
         {
-            //model.Currencies = null;
-            model.Id = Guid.NewGuid().ToString();
             _context.Entry(model).State = EntityState.Added;
             _context.Agencies.Add(model);
             _context.SaveChanges();
@@ -25,13 +24,16 @@ namespace EldExchange.Infra.Repositories
 
         public void DeleteAgency(string id)
         {
-            _context.Agencies.Remove(GetAgency(id));
+            var model = GetAgency(id);
+            if (model == null) throw new NotFoundException("Agency");
+            _context.Entry(model).State = EntityState.Deleted;
+            _context.Agencies.Remove(model);
             _context.SaveChanges();
         }
 
-        public Agency GetAgency(string id)
+        public Agency? GetAgency(string id)
         {
-            return _context.Agencies.FirstOrDefault(x => x.Id == id);
+            return _context.Agencies.FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public IEnumerable<Agency> GetAllAgencies()

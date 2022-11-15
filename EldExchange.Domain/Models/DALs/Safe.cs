@@ -9,8 +9,8 @@ public class Safe
     }
 
     public string AgencyId { get; set; }
-	public Agency? Agency { get; set; }
-	public string CurrencyCode { get; set; }
-	public Currency? Currency { get; set; }
+    public Agency? Agency { get; set; }
+    public string CurrencyCode { get; set; }
+    public Currency? Currency { get; set; }
 
 }

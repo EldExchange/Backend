@@ -4,6 +4,7 @@ using EldExchange.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldExchange.Infra.Context.Migrations
 {
     [DbContext(typeof(EldDbContext))]
-    partial class EldDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221112023656_AddTelephone2")]
+    partial class AddTelephone2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,41 +108,30 @@ namespace EldExchange.Infra.Context.Migrations
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AgencyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
+                    b.Property<string>("Number")
                         .HasMaxLength(10)
                         .IsUnicode(false)
                         .HasColumnType("varchar(10)");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("RegionCode")
                         .HasMaxLength(10)
                         .IsUnicode(false)
                         .HasColumnType("varchar(10)");
 
+                    b.Property<string>("CountryCode")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Type")
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgencyId");
+                    b.HasKey("Id", "Number", "RegionCode", "CountryCode");
 
                     b.HasIndex("Number", "RegionCode", "CountryCode")
-                        .IsUnique()
-                        .HasFilter("[RegionCode] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("telephone", (string)null);
                 });
@@ -158,7 +149,7 @@ namespace EldExchange.Infra.Context.Migrations
                 {
                     b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
                         .WithMany("Phones")
-                        .HasForeignKey("AgencyId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

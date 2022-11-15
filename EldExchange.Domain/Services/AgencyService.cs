@@ -1,6 +1,8 @@
-﻿using EldExchange.Domain.Interfaces;
+﻿using EldExchange.Domain.Config;
+using EldExchange.Domain.Interfaces;
 using EldExchange.Domain.Interfaces.IServices;
 using EldExchange.Domain.Models.DALs;
+using EldExchange.Domain.Models.DTOs;
 
 namespace EldExchange.Domain.Services
 {
@@ -13,10 +15,10 @@ namespace EldExchange.Domain.Services
             _uow = uow;
         }
 
-        public void CreateAgency(Agency agency) => _uow.AgencyRepository.AddAgency(agency);
+        public void CreateAgency(AddAgencyDTO agency) => _uow.AgencyRepository.AddAgency(agency.ToMapper<Agency>());
         public void DeleteAgency(string id) => _uow.AgencyRepository.DeleteAgency(id);
-        public IEnumerable<Agency> GetAgencyList() => _uow.AgencyRepository.GetAllAgencies();
-        public Agency GetById(string id) => _uow.AgencyRepository.GetAgency(id);
-        public void UpdateAgency(Agency agency) => _uow.AgencyRepository.UpdateAgency(agency);
+        public IEnumerable<AgencyDTO> GetAgencyList() => _uow.AgencyRepository.GetAllAgencies().ToMapper<IEnumerable<AgencyDTO>>();
+        public AgencyDTO? GetById(string id) => _uow.AgencyRepository.GetAgency(id)?.ToMapper<AgencyDTO>();
+        public void UpdateAgency(AgencyDTO agency) => _uow.AgencyRepository.UpdateAgency(agency.ToMapper<Agency>());
     }
 }

@@ -2,7 +2,7 @@
 
 public abstract class Money : BasicDAL<string>
 {
-    public Money(string id,decimal value, string? valueName = null): base(id)
+    public Money(string id, decimal value, string? valueName = null)
     {
         Value = value;
         ValueName = valueName;
@@ -13,7 +13,7 @@ public abstract class Money : BasicDAL<string>
 
 public class Coin : Money
 {
-    public Coin(string id, decimal value, string? valueName = null) : base(id,value, valueName)
+    public Coin(string id, decimal value, string? valueName = null) : base(id, value, valueName)
     {
     }
 }

@@ -2,11 +2,6 @@
 using EldExchange.Domain.Interfaces.IRepositories;
 using EldExchange.Infra.Context;
 using EldExchange.Infra.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldExchange.Infra
 {
@@ -35,7 +30,7 @@ namespace EldExchange.Infra
         {
             get
             {
-                if(_currencyRepository != null) return _currencyRepository;
+                if (_currencyRepository != null) return _currencyRepository;
                 _currencyRepository = new CurrencyRepository(_context);
                 return _currencyRepository;
             }

@@ -1,5 +1,5 @@
 ﻿using EldExchange.Domain.Interfaces.IServices;
-using EldExchange.Domain.Models.DALs;
+using EldExchange.Domain.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldExchange.WebApi.Controllers
@@ -27,14 +27,14 @@ namespace EldExchange.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Agency agency)
+        public IActionResult Create([FromBody] AddAgencyDTO agency)
         {
             _service.CreateAgency(agency);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] Agency agency)
+        public IActionResult Update([FromBody] AgencyDTO agency)
         {
             _service.UpdateAgency(agency);
             return Ok();

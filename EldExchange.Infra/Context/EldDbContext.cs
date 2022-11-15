@@ -1,11 +1,6 @@
 ﻿using EldExchange.Domain.Models.DALs;
 using EldExchange.Infra.Context.Mapping;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EldExchange.Infra.Context
 {
@@ -26,7 +21,10 @@ namespace EldExchange.Infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.ApplyConfiguration(new AgencyMap());
+            modelBuilder.HasDefaultSchema("EldExchange");
+            modelBuilder.ApplyConfiguration(new AgencyMap());
+            modelBuilder.ApplyConfiguration(new AddressMap());
+            modelBuilder.ApplyConfiguration(new TelephoneMap());
         }
     }
 }
