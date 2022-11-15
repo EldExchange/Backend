@@ -8,8 +8,6 @@ internal class AddressMap : IEntityTypeConfiguration<Address>
 {
     public void Configure(EntityTypeBuilder<Address> builder)
     {
-        builder.ToTable("address");
-
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Number).HasMaxLength(50);

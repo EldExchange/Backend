@@ -9,6 +9,7 @@ namespace EldExchange.Domain.Configs
         public static void AddBusinesService(this IServiceCollection services)
         {
             services.AddScoped<IAgencyService, AgencyService>();
+            services.AddScoped<ICurrencyService, CurrencyService>();
         }
     }
 }

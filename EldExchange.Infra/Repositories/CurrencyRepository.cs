@@ -1,4 +1,5 @@
 ﻿using EldExchange.Domain.Interfaces.IRepositories;
+using EldExchange.Domain.Models.DALs;
 using EldExchange.Infra.Context;
 
 namespace EldExchange.Infra.Repositories
@@ -10,6 +11,11 @@ namespace EldExchange.Infra.Repositories
         public CurrencyRepository(EldDbContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Currency> GetCurrencies()
+        {
+            return _context.Currencies;//.ToList();
         }
     }
 }

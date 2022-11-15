@@ -14,9 +14,5 @@ public class Address : BasicDAL<Guid>
     public string? Complement { get; set; }
     public string Country { get; set; } = "Br";
     public string? City { get; set; }
-
-    //public Agency? Agency { get; set; }
-    //public string? AgencyId { get; set; }
-
 }
 

@@ -25,6 +25,7 @@ namespace EldExchange.Infra.Context
             modelBuilder.ApplyConfiguration(new AgencyMap());
             modelBuilder.ApplyConfiguration(new AddressMap());
             modelBuilder.ApplyConfiguration(new TelephoneMap());
+            modelBuilder.ApplyConfiguration(new CurrencyMap());
         }
     }
 }
