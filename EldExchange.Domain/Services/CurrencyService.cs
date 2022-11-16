@@ -22,5 +22,10 @@ namespace EldExchange.Domain.Services
         {
             return _uow.CurrencyRepository.GetCurrencies();
         }
+
+        public Currency? GetCurrency(string code)
+        {
+            return _uow?.CurrencyRepository.GetCurrency(code.ToUpper());
+        }
     }
 }

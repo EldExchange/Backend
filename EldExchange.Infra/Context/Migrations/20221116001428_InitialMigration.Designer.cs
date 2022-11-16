@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EldExchange.Infra.Context.Migrations
 {
     [DbContext(typeof(EldDbContext))]
-    [Migration("20221115060810_InitialMigration")]
+    [Migration("20221116001428_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1323,6 +1323,34 @@ namespace EldExchange.Infra.Context.Migrations
                     b.HasDiscriminator<string>("Type").HasValue("Money");
                 });
 
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Safe", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(3)
+                        .IsUnicode(false)
+                        .HasColumnType("char(3)")
+                        .IsFixedLength();
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid>("AgencyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Code", "Value", "Type", "AgencyId");
+
+                    b.HasIndex("AgencyId");
+
+                    b.ToTable("Safe", "EldExchange");
+                });
+
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1374,8 +1402,134 @@ namespace EldExchange.Infra.Context.Migrations
                     b.HasData(
                         new
                         {
+                            Code = "BRL",
+                            Value = 1m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 2m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 5m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 10m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 20m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 50m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 100m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 200m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
                             Code = "USD",
                             Value = 1m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 2m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 5m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 10m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 20m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 50m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 100m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 5m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 10m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 20m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 50m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 100m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 200m,
+                            Type = "BankNote"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 500m,
                             Type = "BankNote"
                         });
                 });
@@ -1389,8 +1543,122 @@ namespace EldExchange.Infra.Context.Migrations
                     b.HasData(
                         new
                         {
+                            Code = "BRL",
+                            Value = 0.01m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 0.05m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 0.1m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 0.25m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 0.5m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "BRL",
+                            Value = 1m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 0.01m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 0.05m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 0.1m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 0.25m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "USD",
+                            Value = 0.5m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
                             Code = "USD",
                             Value = 1m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 0.01m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 0.02m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 0.05m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 0.1m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 0.2m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 0.5m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 1m,
+                            Type = "Coin"
+                        },
+                        new
+                        {
+                            Code = "EUR",
+                            Value = 2m,
                             Type = "Coin"
                         });
                 });
@@ -1413,6 +1681,25 @@ namespace EldExchange.Infra.Context.Migrations
                         .IsRequired();
 
                     b.Navigation("Currency");
+                });
+
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Safe", b =>
+                {
+                    b.HasOne("EldExchange.Domain.Models.DALs.Agency", "Agency")
+                        .WithMany()
+                        .HasForeignKey("AgencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EldExchange.Domain.Models.DALs.Money", "Money")
+                        .WithMany()
+                        .HasForeignKey("Code", "Value", "Type")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Agency");
+
+                    b.Navigation("Money");
                 });
 
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Telephone", b =>

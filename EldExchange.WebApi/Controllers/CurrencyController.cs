@@ -21,5 +21,10 @@ namespace EldExchange.WebApi.Controllers
         {
             return Ok(_service.GetCurrencies());
         }
+        [HttpGet("{code}")]
+        public IActionResult Get([FromRoute]string code)
+        {
+            return Ok(_service.GetCurrency(code));
+        }
     }
 }

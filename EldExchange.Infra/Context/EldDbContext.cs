@@ -10,7 +10,7 @@ namespace EldExchange.Infra.Context
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Telephone> Telephones { get; set; }
         public DbSet<Currency> Currencies { get; set; }
-        //public DbSet<Money> Money { get; set; }
+        public DbSet<Safe> Safe { get; set; }
         public DbSet<Coin> Coins { get; set; }
         public DbSet<BankNote> BankNotes { get; set; }
         public EldDbContext(DbContextOptions options) : base(options)
@@ -19,7 +19,7 @@ namespace EldExchange.Infra.Context
             Addresses = Set<Address>();
             Telephones = Set<Telephone>();
             Currencies = Set<Currency>();
-            //Money = Set<Money>();
+            Safe = Set<Safe>();
             Coins= Set<Coin>();
             BankNotes= Set<BankNote>(); 
         }
@@ -35,6 +35,7 @@ namespace EldExchange.Infra.Context
             modelBuilder.ApplyConfiguration(new MoneyMap());
             modelBuilder.ApplyConfiguration(new BankNoteMap());
             modelBuilder.ApplyConfiguration(new CoinMap());
+            modelBuilder.ApplyConfiguration(new SafeMap());
         }
     }
 }

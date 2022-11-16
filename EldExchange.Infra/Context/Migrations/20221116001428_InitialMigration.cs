@@ -112,6 +112,36 @@ namespace EldExchange.Infra.Context.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Safe",
+                schema: "EldExchange",
+                columns: table => new
+                {
+                    AgencyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Code = table.Column<string>(type: "char(3)", unicode: false, fixedLength: true, maxLength: 3, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Safe", x => new { x.Code, x.Value, x.Type, x.AgencyId });
+                    table.ForeignKey(
+                        name: "FK_Safe_Agencies_AgencyId",
+                        column: x => x.AgencyId,
+                        principalSchema: "EldExchange",
+                        principalTable: "Agencies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Safe_Money_Code_Value_Type",
+                        columns: x => new { x.Code, x.Value, x.Type },
+                        principalSchema: "EldExchange",
+                        principalTable: "Money",
+                        principalColumns: new[] { "Code", "Value", "Type" },
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 schema: "EldExchange",
                 table: "Currencies",
@@ -322,13 +352,57 @@ namespace EldExchange.Infra.Context.Migrations
                 schema: "EldExchange",
                 table: "Money",
                 columns: new[] { "Code", "Type", "Value" },
-                values: new object[] { "USD", "BankNote", 1m });
+                values: new object[,]
+                {
+                    { "BRL", "BankNote", 1m },
+                    { "BRL", "BankNote", 2m },
+                    { "BRL", "BankNote", 5m },
+                    { "BRL", "BankNote", 10m },
+                    { "BRL", "BankNote", 20m },
+                    { "BRL", "BankNote", 50m },
+                    { "BRL", "BankNote", 100m },
+                    { "BRL", "BankNote", 200m },
+                    { "EUR", "BankNote", 5m },
+                    { "EUR", "BankNote", 10m },
+                    { "EUR", "BankNote", 20m },
+                    { "EUR", "BankNote", 50m },
+                    { "EUR", "BankNote", 100m },
+                    { "EUR", "BankNote", 200m },
+                    { "EUR", "BankNote", 500m },
+                    { "USD", "BankNote", 1m },
+                    { "USD", "BankNote", 2m },
+                    { "USD", "BankNote", 5m },
+                    { "USD", "BankNote", 10m },
+                    { "USD", "BankNote", 20m },
+                    { "USD", "BankNote", 50m },
+                    { "USD", "BankNote", 100m },
+                    { "BRL", "Coin", 0.01m },
+                    { "BRL", "Coin", 0.05m },
+                    { "BRL", "Coin", 0.1m },
+                    { "BRL", "Coin", 0.25m },
+                    { "BRL", "Coin", 0.5m },
+                    { "BRL", "Coin", 1m },
+                    { "EUR", "Coin", 0.01m },
+                    { "EUR", "Coin", 0.02m },
+                    { "EUR", "Coin", 0.05m },
+                    { "EUR", "Coin", 0.1m },
+                    { "EUR", "Coin", 0.2m },
+                    { "EUR", "Coin", 0.5m },
+                    { "EUR", "Coin", 1m },
+                    { "EUR", "Coin", 2m },
+                    { "USD", "Coin", 0.01m },
+                    { "USD", "Coin", 0.05m },
+                    { "USD", "Coin", 0.1m },
+                    { "USD", "Coin", 0.25m },
+                    { "USD", "Coin", 0.5m },
+                    { "USD", "Coin", 1m }
+                });
 
-            migrationBuilder.InsertData(
+            migrationBuilder.CreateIndex(
+                name: "IX_Safe_AgencyId",
                 schema: "EldExchange",
-                table: "Money",
-                columns: new[] { "Code", "Type", "Value" },
-                values: new object[] { "USD", "Coin", 1m });
+                table: "Safe",
+                column: "AgencyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Telephones_AgencyId",
@@ -352,7 +426,7 @@ namespace EldExchange.Infra.Context.Migrations
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(
-                name: "Money",
+                name: "Safe",
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(
@@ -360,11 +434,15 @@ namespace EldExchange.Infra.Context.Migrations
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(
-                name: "Currencies",
+                name: "Money",
                 schema: "EldExchange");
 
             migrationBuilder.DropTable(
                 name: "Agencies",
+                schema: "EldExchange");
+
+            migrationBuilder.DropTable(
+                name: "Currencies",
                 schema: "EldExchange");
         }
     }

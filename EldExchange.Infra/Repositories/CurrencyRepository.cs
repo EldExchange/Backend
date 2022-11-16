@@ -1,6 +1,7 @@
 ﻿using EldExchange.Domain.Interfaces.IRepositories;
 using EldExchange.Domain.Models.DALs;
 using EldExchange.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace EldExchange.Infra.Repositories
 {
@@ -16,6 +17,11 @@ namespace EldExchange.Infra.Repositories
         public IEnumerable<Currency> GetCurrencies()
         {
             return _context.Currencies;//.ToList();
+        }
+
+        public Currency? GetCurrency(string code)
+        {
+            return _context.Currencies.Include(x => x.Money).FirstOrDefault(x => x.Code.Equals(code));
         }
     }
 }

@@ -59,6 +59,19 @@ CREATE TABLE [EldExchange].[Money] (
 GO
 
 
+CREATE TABLE [EldExchange].[Safe] (
+    [AgencyId] uniqueidentifier NOT NULL,
+    [Code] char(3) NOT NULL,
+    [Type] nvarchar(50) NOT NULL,
+    [Value] decimal(18,2) NOT NULL,
+    [Quantity] int NOT NULL,
+    CONSTRAINT [PK_Safe] PRIMARY KEY ([Code], [Value], [Type], [AgencyId]),
+    CONSTRAINT [FK_Safe_Agencies_AgencyId] FOREIGN KEY ([AgencyId]) REFERENCES [EldExchange].[Agencies] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Safe_Money_Code_Value_Type] FOREIGN KEY ([Code], [Value], [Type]) REFERENCES [EldExchange].[Money] ([Code], [Value], [Type]) ON DELETE CASCADE
+);
+GO
+
+
 IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Country', N'Name', N'Number') AND [object_id] = OBJECT_ID(N'[EldExchange].[Currencies]'))
     SET IDENTITY_INSERT [EldExchange].[Currencies] ON;
 INSERT INTO [EldExchange].[Currencies] ([Code], [Country], [Name], [Number])
@@ -283,6 +296,10 @@ INSERT INTO [EldExchange].[Money] ([Code], [Type], [Value])
 VALUES ('USD', N'Coin', 1.0);
 IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Code', N'Type', N'Value') AND [object_id] = OBJECT_ID(N'[EldExchange].[Money]'))
     SET IDENTITY_INSERT [EldExchange].[Money] OFF;
+GO
+
+
+CREATE INDEX [IX_Safe_AgencyId] ON [EldExchange].[Safe] ([AgencyId]);
 GO
 
 

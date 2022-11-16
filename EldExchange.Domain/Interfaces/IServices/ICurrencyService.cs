@@ -10,5 +10,6 @@ namespace EldExchange.Domain.Interfaces.IServices
     public interface ICurrencyService
     {
         IEnumerable<Currency> GetCurrencies();
+        Currency? GetCurrency(string code);
     }
 }

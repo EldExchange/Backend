@@ -13,6 +13,6 @@ public class Agency : BasicDAL<Guid>
 
     public Address? Address { get; set; }
     public ICollection<Telephone> Phones { get; set; } = new List<Telephone>();
-    //public ICollection<Safe> Safes { get; set; } = new List<Safe>();
+    public ICollection<Safe> Safes { get; set; } = new List<Safe>();
     //public ICollection<Currency> Currencies { get; set; } = new List<Currency>();
 }

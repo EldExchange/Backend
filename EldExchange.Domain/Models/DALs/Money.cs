@@ -10,7 +10,7 @@ public abstract class Money
     public Currency? Currency { get; set; }
     public string Code { get; set; }
     public decimal Value { get; set; }
-    public string? Type { get; set; }
+    public string? Type { get; protected set; }
 }
 
 public class Coin : Money

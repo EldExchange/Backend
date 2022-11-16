@@ -15,5 +15,6 @@ internal class AgencyMap : IEntityTypeConfiguration<Agency>
 
         builder.HasOne(x => x.Address).WithOne().HasForeignKey<Address>(x => x.Id).IsRequired().OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(x => x.Phones).WithOne().HasForeignKey(x => x.AgencyId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany<Safe>().WithOne(x => x.Agency).HasForeignKey(x => x.AgencyId);
     }
 }
