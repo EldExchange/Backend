@@ -98,7 +98,7 @@ jobs:
           context: .
           file: ./EldExchange/Dockerfile
           push: true
-          tags: flpinheiro/EldExchange:latest,flpinheiro/EldExchange:${{needs.build.outputs.version}}
+          tags: flpinheiro/eldexchange:latest,flpinheiro/eldexchange:${{needs.build.outputs.version}}
 
       - name: Build and push Api Image develop
         uses: docker/build-push-action@v3
@@ -107,4 +107,4 @@ jobs:
           context: .
           file: ./EldExchange/Dockerfile
           push: true
-          tags: flpinheiro/EldExchange:${{needs.build.outputs.version}}
+          tags: flpinheiro/eldexchange:${{needs.build.outputs.version}}
