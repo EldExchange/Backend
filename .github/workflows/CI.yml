@@ -64,7 +64,7 @@ jobs:
       run: echo "version=$(versionize inspect)" >> $GITHUB_OUTPUT
 
     - name: git push changelog
-      run: git push --follow-tags origin master
+      run: git push --follow-tags origin main
 
   docker:
     runs-on: ubuntu-latest
