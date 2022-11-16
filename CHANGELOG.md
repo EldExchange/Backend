@@ -1,4 +1,12 @@
 My Changelog
+<a name="0.0.2-alpha.1"></a>
+## [0.0.2-alpha.1](https://www.github.com/EldExchangeTeam/EldExchange.WebApi/releases/tag/v0.0.2-alpha.1) (2022-11-16)
+
+### Other
+
+* Merge pull request #8 from EldExchangeTeam/feature/EEX-5 ([2c75acf](https://www.github.com/EldExchangeTeam/EldExchange.WebApi/commit/2c75acf32db22ea78dace8dd7f95d0e75781558e))
+* docker file location at ci.yml ([3ceb2af](https://www.github.com/EldExchangeTeam/EldExchange.WebApi/commit/3ceb2af66ed75a310e25d54d24bd931feecec56b))
+
 <a name="0.0.2-alpha.0"></a>
 ## [0.0.2-alpha.0](https://www.github.com/EldExchangeTeam/EldExchange.WebApi/releases/tag/v0.0.2-alpha.0) (2022-11-16)
 

@@ -5,7 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>0.0.2-alpha.0</Version>
+		<Version>0.0.2-alpha.1</Version>
 		<RepositoryUrl>https://github.com/EldExchangeTeam/EldExchange.WebApi.git</RepositoryUrl>
 		<Title>Eld Exchange</Title>
 		<Authors>Felipe Luís Pinheiro</Authors>
