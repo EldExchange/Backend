@@ -63,8 +63,13 @@ jobs:
       id: get-version
       run: echo "version=$(versionize inspect)" >> $GITHUB_OUTPUT
 
-    - name: git push changelog
+    - name: git push changelog main
+      if: steps.branch-name.outputs.current_branch  == 'main'
       run: git push --follow-tags origin main
+
+    - name: git push changelog develop
+      if: steps.branch-name.outputs.current_branch  == 'develop'
+      run: git push --follow-tags origin develop
 
   docker:
     runs-on: ubuntu-latest
