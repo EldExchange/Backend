@@ -11,9 +11,13 @@
 		<Authors>Felipe Luís Pinheiro</Authors>
 		<Company>Eldorado</Company>
 		<RepositoryType>git</RepositoryType>
+		<UserSecretsId>a30c926b-49dc-48cc-9e7d-3a8ad907280c</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.11">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

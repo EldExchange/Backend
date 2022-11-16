@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  eldexchange_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: eldexchange_db
+
+  eldexchange.webapi:
+    image: ${DOCKER_REGISTRY-}eldexchangewebapi
+    build:
+      context: .
+      dockerfile: EldExchange.WebApi/Dockerfile
+      
+volumes:
+  db:

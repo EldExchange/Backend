@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  eldexchange_db:
+    ports:
+      - "1433:1433"
+    volumes:
+      - db:/var/opt/mssql
+    environment:
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: Y
+      MSSQL_PID: Developer
+
+  eldexchange.webapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DATABASE_CONNECTION_STRING:server=eldexchange_db;Database=Master;User=sa;Password=${DB_PASSWORD}
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - eldexchange_db

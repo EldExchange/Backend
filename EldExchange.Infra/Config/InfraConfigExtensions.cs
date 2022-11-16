@@ -11,7 +11,7 @@ namespace EldExchange.Infra.Config
     {
         public static void AddInfraConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("EldExchange");
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING_ELDEXCHANGE")?? configuration.GetConnectionString("EldExchange");
             services.AddDbContext<EldDbContext>(context => context.UseSqlServer(connectionString));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
