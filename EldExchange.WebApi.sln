@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldExchange.WebApi", "EldExchange.WebApi\EldExchange.WebApi.csproj", "{E457A4DC-51C0-478C-92B7-B1F2DF6651C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldExchange.WebApi", "EldExchange.WebApi\EldExchange.WebApi.csproj", "{E457A4DC-51C0-478C-92B7-B1F2DF6651C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldExchange.Domain", "EldExchange.Domain\EldExchange.Domain.csproj", "{051CE590-7E30-44E1-A4C9-C44EC7C0AB6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldExchange.Domain", "EldExchange.Domain\EldExchange.Domain.csproj", "{051CE590-7E30-44E1-A4C9-C44EC7C0AB6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldExchange.Infra", "EldExchange.Infra\EldExchange.Infra.csproj", "{61E03051-C7E1-49C6-8480-49B49F9735A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldExchange.Infra", "EldExchange.Infra\EldExchange.Infra.csproj", "{61E03051-C7E1-49C6-8480-49B49F9735A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldExchange.CrossCutting", "EldExchange.CrossCutting\EldExchange.CrossCutting.csproj", "{EBD97FBC-33A2-4684-B4D4-77E64D9EAD5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldExchange.CrossCutting", "EldExchange.CrossCutting\EldExchange.CrossCutting.csproj", "{EBD97FBC-33A2-4684-B4D4-77E64D9EAD5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldExchange.UnitTest", "EldExchange.UnitTest\EldExchange.UnitTest.csproj", "{38C8CA57-7354-4BA6-A0C5-21686C610713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EldExchange.UnitTest", "EldExchange.UnitTest\EldExchange.UnitTest.csproj", "{38C8CA57-7354-4BA6-A0C5-21686C610713}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E14DC77F-E150-4DCC-BCA9-FC2E05E41CE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A70E667-4176-4DE0-AA02-2CB2EC935205}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+		.github\workflows\CI.yml = .github\workflows\CI.yml
+		.github\workflows\test-reposrter.yml = .github\workflows\test-reposrter.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E457A4DC-51C0-478C-92B7-B1F2DF6651C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +48,15 @@ Global
 		{38C8CA57-7354-4BA6-A0C5-21686C610713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38C8CA57-7354-4BA6-A0C5-21686C610713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38C8CA57-7354-4BA6-A0C5-21686C610713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E14DC77F-E150-4DCC-BCA9-FC2E05E41CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E14DC77F-E150-4DCC-BCA9-FC2E05E41CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E14DC77F-E150-4DCC-BCA9-FC2E05E41CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E14DC77F-E150-4DCC-BCA9-FC2E05E41CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93198BD9-4F9F-42F5-B93B-95C6A610CAB9}
 	EndGlobalSection
 EndGlobal
