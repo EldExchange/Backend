@@ -1162,7 +1162,10 @@ namespace EldExchange.Infra.Context.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("AgencyId")
+                    b.Property<Guid?>("AgencyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AgencyId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
@@ -1171,6 +1174,8 @@ namespace EldExchange.Infra.Context.Migrations
                     b.HasKey("Code", "Value", "Type", "AgencyId");
 
                     b.HasIndex("AgencyId");
+
+                    b.HasIndex("AgencyId1");
 
                     b.ToTable("Safe", "EldExchange");
                 });
@@ -1499,7 +1504,7 @@ namespace EldExchange.Infra.Context.Migrations
             modelBuilder.Entity("EldExchange.Domain.Models.DALs.Money", b =>
                 {
                     b.HasOne("EldExchange.Domain.Models.DALs.Currency", "Currency")
-                        .WithMany()
+                        .WithMany("Money")
                         .HasForeignKey("Code")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1514,6 +1519,10 @@ namespace EldExchange.Infra.Context.Migrations
                         .HasForeignKey("AgencyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("EldExchange.Domain.Models.DALs.Agency", null)
+                        .WithMany("Safes")
+                        .HasForeignKey("AgencyId1");
 
                     b.HasOne("EldExchange.Domain.Models.DALs.Money", "Money")
                         .WithMany()
@@ -1540,6 +1549,13 @@ namespace EldExchange.Infra.Context.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Phones");
+
+                    b.Navigation("Safes");
+                });
+
+            modelBuilder.Entity("EldExchange.Domain.Models.DALs.Currency", b =>
+                {
+                    b.Navigation("Money");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,8 +4,10 @@ namespace EldExchange.Domain.Interfaces
 {
     public interface IUnitOfWork
     {
-        public IAgencyRepository AgencyRepository { get; }
+        IAgencyRepository AgencyRepository { get; }
 
-        public ICurrencyRepository CurrencyRepository { get; }
+        ICurrencyRepository CurrencyRepository { get; }
+
+        ISafeRepository SafeRepository { get; }
     }
 }

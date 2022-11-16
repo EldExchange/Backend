@@ -35,5 +35,16 @@ namespace EldExchange.Infra
                 return _currencyRepository;
             }
         }
+
+        private ISafeRepository? _safetyRepository;
+        public ISafeRepository SafeRepository
+        {
+            get
+            {
+                if(_safetyRepository!= null) return _safetyRepository;
+                _safetyRepository= new SafeRepository(_context);
+                return _safetyRepository;
+            }
+        }
     }
 }

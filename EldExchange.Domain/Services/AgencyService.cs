@@ -21,6 +21,10 @@ namespace EldExchange.Domain.Services
             var currencyList = new List<Currency>();
             _currencyList.ForEach(x => currencyList.Add(_uow.CurrencyRepository.GetCurrency(x)));
             var model = agency.ToMapper<Agency>();
+
+
+           
+
             foreach (var currency in currencyList) 
             {
                 if(currency.Money != null)
@@ -30,8 +34,8 @@ namespace EldExchange.Domain.Services
                         model.Safes.Add(safe);
                 }
             }
-
             _uow.AgencyRepository.AddAgency(model);
+            _uow.SafeRepository.AddSafe(model.Safes);
         }
 
         public void DeleteAgency(string id) => _uow.AgencyRepository.DeleteAgency(id);
