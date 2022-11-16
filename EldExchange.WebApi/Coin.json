@@ -1,0 +1,82 @@
+[
+  {
+    "Code": "BRL",
+    "Value": 0.01
+  },
+  {
+    "Code": "BRL",
+    "Value": 0.05
+  },
+  {
+    "Code": "BRL",
+    "Value": 0.1
+  },
+  {
+    "Code": "BRL",
+    "Value": 0.25
+  },
+  {
+    "Code": "BRL",
+    "Value": 0.5
+  },
+  {
+    "Code": "BRL",
+    "Value": 1
+  },
+  {
+    "Code": "USD",
+    "Value": 0.01
+  },
+  {
+    "Code": "USD",
+    "Value": 0.05
+  },
+  {
+    "Code": "USD",
+    "Value": 0.1
+  },
+  {
+    "Code": "USD",
+    "Value": 0.25
+  },
+  {
+    "Code": "USD",
+    "Value": 0.5
+  },
+  {
+    "Code": "USD",
+    "Value": 1
+  },
+  {
+    "Code": "EUR",
+    "Value": 0.01
+  },
+  {
+    "Code": "EUR",
+    "Value": 0.02
+  },
+  {
+    "Code": "EUR",
+    "Value": 0.05
+  },
+  {
+    "Code": "EUR",
+    "Value": 0.1
+  },
+  {
+    "Code": "EUR",
+    "Value": 0.2
+  },
+  {
+    "Code": "EUR",
+    "Value": 0.5
+  },
+  {
+    "Code": "EUR",
+    "Value": 1
+  },
+  {
+    "Code": "EUR",
+    "Value": 2
+  }
+]

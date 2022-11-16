@@ -1,0 +1,90 @@
+[
+  {
+    "Code": "BRL",
+    "Value": 1
+  },
+  {
+    "Code": "BRL",
+    "Value": 2
+  },
+  {
+    "Code": "BRL",
+    "Value": 5
+  },
+  {
+    "Code": "BRL",
+    "Value": 10
+  },
+  {
+    "Code": "BRL",
+    "Value": 20
+  },
+  {
+    "Code": "BRL",
+    "Value": 50
+  },
+  {
+    "Code": "BRL",
+    "Value": 100
+  },
+  {
+    "Code": "BRL",
+    "Value": 200
+  },
+  {
+    "Code": "USD",
+    "Value": 1
+  },
+  {
+    "Code": "USD",
+    "Value": 2
+  },
+  {
+    "Code": "USD",
+    "Value": 5
+  },
+  {
+    "Code": "USD",
+    "Value": 10
+  },
+  {
+    "Code": "USD",
+    "Value": 20
+  },
+  {
+    "Code": "USD",
+    "Value": 50
+  },
+  {
+    "Code": "USD",
+    "Value": 100
+  },
+  {
+    "Code": "EUR",
+    "Value": 5
+  },
+  {
+    "Code": "EUR",
+    "Value": 10
+  },
+  {
+    "Code": "EUR",
+    "Value": 20
+  },
+  {
+    "Code": "EUR",
+    "Value": 50
+  },
+  {
+    "Code": "EUR",
+    "Value": 100
+  },
+  {
+    "Code": "EUR",
+    "Value": 200
+  },
+  {
+    "Code": "EUR",
+    "Value": 500
+  }
+]

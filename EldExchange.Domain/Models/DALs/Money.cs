@@ -2,26 +2,30 @@
 
 public abstract class Money
 {
-    public Money(decimal value, string? valueName = null)
+    public Money(string code, decimal value)
     {
         Value = value;
-        ValueName = valueName;
+        Code = code;
     }
+    public Currency? Currency { get; set; }
+    public string Code { get; set; }
     public decimal Value { get; set; }
-    public string? ValueName { get; set; }
+    public string? Type { get; protected set; }
 }
 
 public class Coin : Money
 {
-    public Coin(decimal value, string? valueName = null) : base(value, valueName)
+    public Coin(string code, decimal value) : base(code, value)
     {
+        Type = "Coin";
     }
 }
 
 public class BankNote : Money
 {
-    public BankNote(decimal value, string? valueName = null) : base(value, valueName)
+    public BankNote(string code, decimal value) : base(code, value)
     {
+        Type = "BankNote";
     }
 }
 
